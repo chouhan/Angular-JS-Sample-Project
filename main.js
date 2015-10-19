@@ -3,7 +3,7 @@
 (function() {
   
  var app = angular.module("main", []);
-  var maincontroller = function($scope, github, $interval, $log, $location, $anchorScroll) {
+    var maincontroller = function($scope, $http, $interval, $log, $location, $anchorScroll, github) {
 
     var onusercomplete = function(response) {
       $scope.user = response.data;
@@ -45,6 +45,7 @@
     $scope.search = function(username)
     {
       $log.info("searching for " + username);
+      username = username == undefined ? 'ssntosh' : username;
         github.getuser(username).then(onusercomplete, onError);
      if(countdownInterval)
      {
